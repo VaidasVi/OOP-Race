@@ -33,6 +33,25 @@ function isPositiveInteger(input) {
   return Number.isInteger(input) && input > 0;
 }
 
-getUserInput();
-console.log(numberOfCars);
-console.log(distance);
+// ! 2. Sukurti konstruktoriaus klase Car, kuri tures properties: id, speed distance, methods: accelerate(howMuch), slowDown(howMuch), move()
+// ! i konstruktoriu paduodami parametras id, o speed is disntace pradzioj = 0
+
+class Car {
+  constructor(id) {
+    this.id = id;
+    this.speed = 0;
+    this.distance = 0;
+  }
+  accelerate(howMuch) {
+    this.speed += howMuch;
+  }
+  slowDown(howMuch) {
+    this.speed -= howMuch;
+    if (this.speed < 0) this.speed = 0;
+  }
+  move() {
+    this.distance += this.speed;
+  }
+}
+
+// getUserInput();
