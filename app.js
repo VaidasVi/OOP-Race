@@ -85,6 +85,39 @@ function drawFinishLine(amountOfCars, distance) {
   document.querySelector("body").append(finishLine);
 }
 
+// ! 5. function pace() - nustatom greiti
+// pasidarom intervala kad kviestu fn pace() kas 2s
+// funkcijoje kiekvienam auto sugenruojam per kiek pagreites/paletes (max 5)
+// ir su dar vienu Math.random() nustatom ar greitinsim ar letinsim
+// paleidziam intervala; galim pasiloginti
+
+function pace() {
+  cars.forEach((car) => {
+    const amount = Math.floor(Math.random() * 6);
+    if (Math.random() > 0.5) {
+      car.accelerate(amount);
+    } else {
+      car.slowDown(amount);
+    }
+  });
+}
+
+// ! 6. fn move() - pajudinam
+// ? 6.1
+// pasidarom intervala kad kviestu fn move() kas 0.5s
+// funkcijoje:
+// is pradziu vienam cikle pajudinam kiekviena auto, ir pajudine pakeiciam konkretaus auto left css savybe per kiek nuvaziavo
+
+function move() {
+  cars.forEach((car) => {
+    car.move();
+    document.querySelectorAll(".car")[car.id].style.left = car.distance + "px";
+  });
+}
+
 getUserInput();
 drawCars(numberOfCars);
 drawFinishLine(numberOfCars, distance);
+
+let paceInterval = setInterval(pace, 2000);
+let moveInterval = setInterval(move, 500);
