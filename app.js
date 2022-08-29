@@ -15,6 +15,7 @@
 
 let numberOfCars = 0;
 let distance = 0;
+let cars = [];
 
 // ! 1. Sukurti function getUserInput(), kuri paims is userio numberOfCars ir distance
 // ! ir pacallinam sukurta funkcija
@@ -54,4 +55,28 @@ class Car {
   }
 }
 
-// getUserInput();
+// ! 3. function drwCars() kuri nupiesia tiek auto kiek ivesta userio
+// ! 3.1 susikuriam tuscia aaray globaliai cars i kuri supushinam tiek objektu kiek useris ivede auto
+// kurti panaudojant kalse Car is sukurti loopa kol pasieksim numberOfCars
+// kaip parametra i Car klase, paduoti array indexa (i)
+// ! 3.2 sukt loopa per visus car array objektus is kiekvienam is ju:
+// ! sukurti nauja HTML elementa div, prideti klase 'car', nurodyti pozicija per .style.top = 60 * car.id + 'px'
+// ! ir apendinti i dokumenta
+
+// ? 3.1
+
+function drawCars(amount) {
+  for (let i = 0; i < amount; i++) {
+    cars.push(new Car(i));
+  }
+  cars.forEach((car) => {
+    const newDiv = document.createElement("div");
+    newDiv.classList.add("car");
+    newDiv.style.top = 60 * car.id + "px";
+    document.querySelector("body").append(newDiv);
+  });
+}
+
+console.log(cars);
+getUserInput();
+drawCars(numberOfCars);
