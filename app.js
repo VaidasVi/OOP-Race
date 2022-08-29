@@ -72,15 +72,21 @@ function drawCars(amount) {
   cars.forEach((car) => {
     const newCar = document.createElement("div");
     newCar.classList.add("car");
-    newCar.style.top = 100 + 60 * car.id + "px";
+    newCar.style.top = 100 + 80 * car.id + "px";
     document.querySelector("body").append(newCar);
+
+    const carInfo = document.createElement("div");
+    carInfo.classList.add("car-info");
+    carInfo.style.top = 160 + 80 * car.id + "px";
+    carInfo.textContent = `Speed:${car.speed} Distance:${car.distance}`;
+    document.querySelector("body").append(carInfo);
   });
 }
 
 function drawFinishLine(amountOfCars, distance) {
   const finishLine = document.createElement("div");
   finishLine.classList.add("finishLine");
-  finishLine.style.height = 60 * amountOfCars + "px";
+  finishLine.style.height = 80 * amountOfCars + "px";
   finishLine.style.left = distance + 100 + "px";
   finishLine.style.top = "100px";
   document.querySelector("body").append(finishLine);
@@ -113,6 +119,11 @@ function move() {
   cars.forEach((car) => {
     car.move();
     document.querySelectorAll(".car")[car.id].style.left = car.distance + "px";
+    document.querySelectorAll(".car-info")[car.id].style.left =
+      car.distance + "px";
+    document.querySelectorAll(".car-info")[
+      car.id
+    ].textContent = `Speed:${car.speed} Distance:${car.distance}`;
   });
   // ? detect win
   cars.forEach((car) => {
