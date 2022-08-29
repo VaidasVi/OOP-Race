@@ -72,7 +72,7 @@ function drawCars(amount) {
   cars.forEach((car) => {
     const newCar = document.createElement("div");
     newCar.classList.add("car");
-    newCar.style.top = 60 * car.id + "px";
+    newCar.style.top = 100 + 60 * car.id + "px";
     document.querySelector("body").append(newCar);
   });
 }
@@ -82,6 +82,7 @@ function drawFinishLine(amountOfCars, distance) {
   finishLine.classList.add("finishLine");
   finishLine.style.height = 60 * amountOfCars + "px";
   finishLine.style.left = distance + 100 + "px";
+  finishLine.style.top = "100px";
   document.querySelector("body").append(finishLine);
 }
 
@@ -113,11 +114,23 @@ function move() {
     car.move();
     document.querySelectorAll(".car")[car.id].style.left = car.distance + "px";
   });
+  // ? detect win
+  cars.forEach((car) => {
+    if (car.distance >= distance) {
+      clearInterval(paceInterval);
+      clearInterval(moveInterval);
+      const winnerText = document.createElement("div");
+      winnerText.classList.add("winner-text");
+      winnerText.textContent = `Winner is car: ${car.id + 1}!!!`;
+      document.querySelector("body").append(winnerText);
+    }
+  });
 }
 
 getUserInput();
 drawCars(numberOfCars);
 drawFinishLine(numberOfCars, distance);
+pace();
 
 let paceInterval = setInterval(pace, 2000);
 let moveInterval = setInterval(move, 500);

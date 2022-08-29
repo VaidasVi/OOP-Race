@@ -12,3 +12,8 @@
   position: absolute;
   top: 0;
 }
+
+.winner-text {
+  font-size: 3rem;
+  text-align: center;
+}
