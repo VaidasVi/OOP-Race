@@ -70,13 +70,21 @@ function drawCars(amount) {
     cars.push(new Car(i));
   }
   cars.forEach((car) => {
-    const newDiv = document.createElement("div");
-    newDiv.classList.add("car");
-    newDiv.style.top = 60 * car.id + "px";
-    document.querySelector("body").append(newDiv);
+    const newCar = document.createElement("div");
+    newCar.classList.add("car");
+    newCar.style.top = 60 * car.id + "px";
+    document.querySelector("body").append(newCar);
   });
 }
 
-console.log(cars);
+function drawFinishLine(amountOfCars, distance) {
+  const finishLine = document.createElement("div");
+  finishLine.classList.add("finishLine");
+  finishLine.style.height = 60 * amountOfCars + "px";
+  finishLine.style.left = distance + 100 + "px";
+  document.querySelector("body").append(finishLine);
+}
+
 getUserInput();
 drawCars(numberOfCars);
+drawFinishLine(numberOfCars, distance);
